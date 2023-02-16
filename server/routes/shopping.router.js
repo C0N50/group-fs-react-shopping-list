@@ -6,7 +6,7 @@ const pool = require('../modules/pool.js');
 router.get('/', (req, res) => {
   console.log('in GET router');
   const sqlText = `
-        SELECT * FROM shopping_table ORDER BY name DESC;
+        SELECT * FROM shopping_table ORDER BY ispurchased ASC, name ASC;
     `;
 
   pool
@@ -40,13 +40,8 @@ router.post('/', (req, res) => {
 
 //PUT
 router.put('/:id', (req, res) => {
-  const sqlText = `UPDATE shopping_table name SET name=$1, quantity=$2, unit=$3 WHERE id=$4;`;
-  const sqlParams = [
-    req.body.name,
-    req.body.quantity,
-    req.body.unit,
-    req.params.id,
-  ];
+  const sqlText = `UPDATE shopping_table SET ispurchased='true' WHERE id=$1;`;
+  const sqlParams = [req.params.id];
 
   pool
     .query(sqlText, sqlParams)
