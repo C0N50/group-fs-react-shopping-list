@@ -22,8 +22,43 @@ router.get('/', (req, res) => {
 });
 
 //POST
+router.post('/', (req, res) => {
+  const item = req.body;
+  const sqlText = `INSERT INTO shopping_table (name, quantity, unit)
+                    VALUES ($1, $2, $3);`;
+  pool
+    .query(sqlText, [item.name, item.quantity, item.unit])
+    .then((result) => {
+      console.log('Added item', item);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error('Error in router POST', err);
+      res.sendStatus(501);
+    });
+});
 
 //PUT
+router.put('/:id', (req, res) => {
+  const sqlText = `UPDATE shopping_table name SET name=$1, quantity=$2, unit=$3 WHERE id=$4;`;
+  const sqlParams = [
+    req.body.name,
+    req.body.quantity,
+    req.body.unit,
+    req.params.id,
+  ];
+
+  pool
+    .query(sqlText, sqlParams)
+    .then((result) => {
+      console.log('In PUT router', result);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.error('Error in PUT router', err);
+      res.sendStatus(501);
+    });
+});
 
 //DELETE
 router.delete('/', (req, res) => {
