@@ -27,21 +27,10 @@ function Item({ item, removeItem }) {
       <div className='item-style'>
         <div className="item-style">
           <ul>
-            <li>
-              {item.name}
-            </li>
-            <li>
-              {item.quantity}
-            </li>
-            <li>
-              {item.unit}
-            </li>
             <li>{item.name}</li>
             <li>{item.quantity}</li>
             <li>{item.unit}</li>
           </ul>
-          <button onClick={handleBuyClick}>Buy</button>
-          <button onClick={handleRemoveClick}>Remove</button>
         </div>
         <button onClick={handleBuyClick} disabled={item.ispurchased}>Buy</button>
         <button onClick={handleRemoveClick}>Remove</button>
