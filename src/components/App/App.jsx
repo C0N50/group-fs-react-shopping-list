@@ -6,7 +6,17 @@ import './App.css';
 
 function App() {
 
-    const Item = 
+    const purchaseItem = () => {
+        axios.put(`/list/${id}`)
+        .then((response) => {
+            getList();
+          })
+          .catch((err) => {
+            alert("Error Getting List Items");
+            console.log(err);
+          });
+      };
+
     return (
         <div className="App">
             <Header />

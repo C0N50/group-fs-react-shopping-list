@@ -1,7 +1,18 @@
 import { useState } from "react";
 
-function item = ({item}) => {
-    return ()
+function Item({ item }) {
+  const [isPurchased, setIsPurchased] = useState(false);
+
+  const handleClick = () => {
+    console.log(item);
+    setIsPurchased(!setIsPurchased);
+  };
+
+  return (
+    <>
+      <button onClick={handleClick}>Buy</button>
+    </>
+  );
 }
 
 export default Item;
