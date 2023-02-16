@@ -1,7 +1,7 @@
 import React from "react";
 import Item from "../Item/Item";
 
-function ShoppingList({shoppingList}) {
+function ShoppingList({ shoppingList, removeItem }) {
   return (
     <>
       <h2>Shopping List</h2>
@@ -10,9 +10,8 @@ function ShoppingList({shoppingList}) {
         <button>Clear</button>
       </div>
       <div className="list-grid">
-
-        {shoppingList.map(item => (
-        <Item key={item.id} item={item} />
+        {shoppingList.map((item) => (
+          <Item removeItem={removeItem} key={item.id} item={item} />
         ))}
       </div>
     </>
