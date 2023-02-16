@@ -48,12 +48,24 @@ function App() {
     };
 
 
+    const clearList = () => {
+        axios.delete('/list')
+        .then ((response) => {
+            console.log('Cleared Table:', response);
+            getList();
+        })
+        .catch((err) => {
+            console.log('Error on clear', clear);
+        })
+    }
+
+
     return (
         <div className="App">
             <Header />
             <main>
                 <AddForm addItem={addItem} />
-                <ShoppingList shoppingList={shoppingList} />
+                <ShoppingList shoppingList={shoppingList} clearList={clearList}/>
             </main>
         </div>
     );
