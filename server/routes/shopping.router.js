@@ -23,11 +23,13 @@ router.get('/', (req, res) => {
 
 //POST
 router.post('/', (req, res) => {
+  console.log(req.data)
   const item = req.body;
-  const sqlText = `INSERT INTO shopping_table (name, quantity, unit)
-                    VALUES ($1, $2, $3);`;
-  pool
-    .query(sqlText, [item.name, item.quantity, item.unit])
+  const sqlText = `
+  INSERT INTO shopping_table (name, quantity, unit)
+  VALUES ($1, $2, $3);
+  `;
+  pool.query(sqlText, [item.name, item.quantity, item.unit])
     .then((result) => {
       console.log('Added item', item);
       res.sendStatus(201);
@@ -38,7 +40,7 @@ router.post('/', (req, res) => {
     });
 });
 
-//PUT
+//PUT 
 router.put('/:id', (req, res) => {
   const sqlText = `UPDATE shopping_table SET ispurchased='true' WHERE id=$1;`;
   const sqlParams = [req.params.id];
@@ -55,7 +57,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-//DELETE
+//DELETE for Clear
 router.delete('/', (req, res) => {
   console.log('Clearing shopping_table');
 
@@ -71,6 +73,27 @@ router.delete('/', (req, res) => {
     })
     .catch((error) => {
       console.log('ERROR could not delete', error);
+      res.sendStatus(500);
+    });
+});
+
+//Delete for Remove
+router.delete('/:id', (req, res) => {
+  console.log('Removing shopping_table');
+  const id = req.params.id;
+
+  let sqlQuery = `
+    DELETE FROM "shopping_table" WHERE id = $1;
+    `;
+
+  pool
+    .query(sqlQuery, [id])
+    .then(() => {
+      console.log('table deleted');
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error);
       res.sendStatus(500);
     });
 });

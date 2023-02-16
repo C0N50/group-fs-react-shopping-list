@@ -27,8 +27,9 @@ function App() {
     }, []);
 
     const addItem = (itemToAdd) => {
+        console.log(itemToAdd)
 
-        axios.post('/list', { itemToAdd })
+        axios.post('/list',  itemToAdd)
             .then((response) => {
                 console.log('in POST item', response);
                 getList();
@@ -37,13 +38,47 @@ function App() {
             });
     };
 
+    const purchaseItem = () => {
+        axios.put(`/list/${id}`)
+        .then((response) => {
+            getList();
+          })
+          .catch((err) => {
+            alert("Error Getting List Items");
+            console.log(err);
+          });
+      };
+
+    const removeItem = (id) => {
+        axios.delete(`/list/${id}`)
+            .then((response) => {
+                getList();
+            })
+            .catch((err) => {
+                alert("Error Deleting List Items");
+                console.log(err);
+            });
+    };
+
+    const clearList = () => {
+        axios.delete('/list')
+        .then ((response) => {
+            console.log('Cleared Table:', response);
+            getList();
+        })
+        .catch((err) => {
+            console.log('Error on clear', clear);
+        })
+    }
+
 
     return (
         <div className="App">
             <Header />
             <main>
                 <AddForm addItem={addItem} />
-                <ShoppingList shoppingList={shoppingList} />
+                <ShoppingList removeItem={removeItem} shoppingList={shoppingList} clearList={clearList}/>
+
             </main>
         </div>
     );
