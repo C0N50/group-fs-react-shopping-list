@@ -4,7 +4,7 @@ import Item from "../Item/Item";
 function ShoppingList({ shoppingList, clearList, removeItem }) {
 
   const handleClearClick = () => {
-    console.log('Cicked Clear');
+    console.log('Clicked Clear');
     clearList();
   }
   
