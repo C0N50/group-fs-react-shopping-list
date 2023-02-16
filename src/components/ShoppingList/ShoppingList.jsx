@@ -1,6 +1,6 @@
 import React from "react";
 
-function ShoppingList() {
+function ShoppingList({shoppingList}) {
   return (
     <>
       <h2>Shopping List</h2>
@@ -8,8 +8,7 @@ function ShoppingList() {
         <button>Reset</button>
         <button>Clear</button>
       </div>
-      <div class="list-grid">
-        {/* Add Item Component here */}
+      <div className="list-grid">
         <Item key={item.id} item={item} />
       </div>
     </>
