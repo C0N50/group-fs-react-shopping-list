@@ -8,7 +8,8 @@ CREATE TABLE "shopping_table" (
     "id" SERIAL PRIMARY KEY,
     "name" VARCHAR(80) NOT NULL,
     "quantity" DECIMAL (4,2),
-    "unit" VARCHAR(20)
+    "unit" VARCHAR(20),
+    "ispurchased" BOOLEAN DEFAULT FALSE
 );
 
 
