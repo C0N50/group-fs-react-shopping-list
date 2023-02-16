@@ -2,3 +2,22 @@ main {
   width: 90%;
   margin: auto;
 }
+
+.list-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 20px;
+
+}
+
+.item-style {
+  padding: 5px;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  background-color: hsl(225, 100%, 83%);
+  border-radius: 5px;
+  
+}
