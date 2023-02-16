@@ -1,4 +1,6 @@
-function addForm({addItem}) {
+import { useState } from "react";
+
+function AddForm({addItem}) {
     const [newItemName, setNewItemName] = useState('');
     const [newItemQuantity, setNewItemQuantity] = useState('');
     const [newItemUnit, setNewItemUnit] = useState('');
@@ -50,3 +52,6 @@ function addForm({addItem}) {
         </>
     )
 }
+
+
+export default AddForm;

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Header from '../Header/Header.jsx';
 import AddForm from '../AddForm/AddForm.jsx';
-import ShoppingList from '..ShoppingList/ShoppingList.jsx';
+import ShoppingList from '../ShoppingList/ShoppingList.jsx';
 import './App.css';
 
 
