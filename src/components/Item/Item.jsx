@@ -1,11 +1,20 @@
 import { useState } from "react";
+import axios from "axios";
 
 function Item({ item, removeItem }) {
   const [isPurchased, setIsPurchased] = useState(false);
 
   const handleBuyClick = () => {
     console.log(item);
-    setIsPurchased(!setIsPurchased);
+    axios.put(`/list/${item.id}`, item.ispurchased)
+      .then((response) => {
+
+        // getList();
+      })
+      .catch((err) => {
+        alert("Error Getting List Items");
+        console.log(err);
+      });
   };
 
   const handleRemoveClick = () => {
@@ -15,13 +24,26 @@ function Item({ item, removeItem }) {
 
   return (
     <>
-      <div className="item-style">
-        <ul>
-          <li>{item.name}</li>
-          <li>{item.quantity}</li>
-          <li>{item.unit}</li>
-        </ul>
-        <button onClick={handleBuyClick}>Buy</button>
+      <div className='item-style'>
+        <div className="item-style">
+          <ul>
+            <li>
+              {item.name}
+            </li>
+            <li>
+              {item.quantity}
+            </li>
+            <li>
+              {item.unit}
+            </li>
+            <li>{item.name}</li>
+            <li>{item.quantity}</li>
+            <li>{item.unit}</li>
+          </ul>
+          <button onClick={handleBuyClick}>Buy</button>
+          <button onClick={handleRemoveClick}>Remove</button>
+        </div>
+        <button onClick={handleBuyClick} disabled={item.ispurchased}>Buy</button>
         <button onClick={handleRemoveClick}>Remove</button>
       </div>
     </>
