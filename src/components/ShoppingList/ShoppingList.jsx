@@ -1,18 +1,24 @@
 import React from "react";
 import Item from "../Item/Item";
 
-function ShoppingList({ shoppingList, clearList, removeItem, purchaseItem }) {
+function ShoppingList({ shoppingList, clearList, removeItem, purchaseItem, resetList }) {
 
   const handleClearClick = () => {
     console.log('Clicked Clear');
     clearList();
   };
 
+  const handleResetClick = () => {
+    console.log('Clicked Reset');
+    resetList();
+
+  }
+
   return (
     <>
       <h2>Shopping List</h2>
       <div className="list-buttons">
-        <button>Reset</button>
+        <button onClick={handleResetClick}>Reset</button>
         <button onClick={handleClearClick} >Clear</button>
       </div>
       <div className="list-grid">

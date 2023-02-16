@@ -45,10 +45,23 @@ function App() {
                 getList();
             })
             .catch((err) => {
-                alert("Error Getting List Items");
+                alert("Error Buying List Items");
                 console.log(err);
             });
     };
+
+
+    const resetList = () => {
+            axios.put(`/list`)
+                .then((response) => {
+                    getList();
+                })
+                .catch((err) => {
+                    alert("Error Reseting List Items");
+                    console.log(err);
+                });
+        }
+
 
     const removeItem = (id) => {
         axios.delete(`/list/${id}`)
@@ -78,7 +91,7 @@ function App() {
             <Header />
             <main>
                 <AddForm addItem={addItem} />
-                <ShoppingList purchaseItem={purchaseItem} removeItem={removeItem} shoppingList={shoppingList} clearList={clearList} />
+                <ShoppingList resetList={resetList} purchaseItem={purchaseItem} removeItem={removeItem} shoppingList={shoppingList} clearList={clearList} />
 
             </main>
         </div>

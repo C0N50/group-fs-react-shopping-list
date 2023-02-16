@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
     });
 });
 
-//PUT 
+//PUT (buy)
 router.put('/:id', (req, res) => {
   const sqlText = `UPDATE shopping_table SET ispurchased='true' WHERE id=$1;`;
   const sqlParams = [req.params.id];
@@ -56,6 +56,23 @@ router.put('/:id', (req, res) => {
       res.sendStatus(501);
     });
 });
+
+//PUT (reset)
+router.put('/', (req, res) => {
+    const sqlText = `UPDATE shopping_table SET ispurchased='false';`;
+
+    pool
+      .query(sqlText)
+      .then((result) => {
+        console.log('In PUT router', result);
+        res.sendStatus(201);
+      })
+      .catch((err) => {
+        console.error('Error in PUT router', err);
+        res.sendStatus(501);
+      });
+  });
+
 
 //DELETE for Clear
 router.delete('/', (req, res) => {
