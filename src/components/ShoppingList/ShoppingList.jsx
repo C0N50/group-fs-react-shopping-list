@@ -1,6 +1,6 @@
 import React from "react"
 
-function ShoppingList () {
+function ShoppingList (shoppingList) {
 
     return (
         <>
