@@ -1,6 +1,9 @@
 -- Don't forget to add your create table SQL 
 -- It is also helpful to include some test data
 
+
+-- DATABASE NAME : shopping_db
+
 CREATE TABLE "shopping_table" (
     "id" SERIAL PRIMARY KEY,
     "name" VARCHAR(80) NOT NULL,
