@@ -1,20 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 
-function Item({ item, removeItem }) {
+function Item({ item, removeItem, purchaseItem }) {
   const [isPurchased, setIsPurchased] = useState(false);
 
   const handleBuyClick = () => {
     console.log(item);
-    axios.put(`/list/${item.id}`, item.ispurchased)
-      .then((response) => {
-
-        // getList();
-      })
-      .catch((err) => {
-        alert("Error Getting List Items");
-        console.log(err);
-      });
+    purchaseItem(item);
   };
 
   const handleRemoveClick = () => {

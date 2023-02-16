@@ -1,13 +1,13 @@
 import React from "react";
 import Item from "../Item/Item";
 
-function ShoppingList({ shoppingList, clearList, removeItem }) {
+function ShoppingList({ shoppingList, clearList, removeItem, purchaseItem }) {
 
   const handleClearClick = () => {
     console.log('Clicked Clear');
     clearList();
-  }
-  
+  };
+
   return (
     <>
       <h2>Shopping List</h2>
@@ -18,7 +18,7 @@ function ShoppingList({ shoppingList, clearList, removeItem }) {
       <div className="list-grid">
 
         {shoppingList.map(item => (
-        <Item removeItem={removeItem} key={item.id} item={item} />
+          <Item purchaseItem={purchaseItem} removeItem={removeItem} key={item.id} item={item} />
         ))}
       </div>
     </>
