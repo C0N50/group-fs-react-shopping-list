@@ -27,8 +27,9 @@ function App() {
     }, []);
 
     const addItem = (itemToAdd) => {
+        console.log(itemToAdd)
 
-        axios.post('/list', { itemToAdd })
+        axios.post('/list',  itemToAdd)
             .then((response) => {
                 console.log('in POST item', response);
                 getList();
@@ -58,12 +59,26 @@ function App() {
                 console.log(err);
             });
     };
+
+    const clearList = () => {
+        axios.delete('/list')
+        .then ((response) => {
+            console.log('Cleared Table:', response);
+            getList();
+        })
+        .catch((err) => {
+            console.log('Error on clear', clear);
+        })
+    }
+
+
     return (
         <div className="App">
             <Header />
             <main>
                 <AddForm addItem={addItem} />
-                <ShoppingList removeItem={removeItem} shoppingList={shoppingList} />
+                <ShoppingList removeItem={removeItem} shoppingList={shoppingList} clearList={clearList}/>
+
             </main>
         </div>
     );
