@@ -14,7 +14,7 @@ function Item({ item }) {
 
   return (
     <>
-    <div>
+    <div className='item-style'>
         <ul>
             <li>
             {item.name} 
