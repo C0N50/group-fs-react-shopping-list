@@ -8,16 +8,6 @@ import './App.css';
 
 
 function App() {
-    const purchaseItem = () => {
-        axios.put(`/list/${id}`)
-        .then((response) => {
-            getList();
-          })
-          .catch((err) => {
-            alert("Error Getting List Items");
-            console.log(err);
-          });
-      };
 
     const [shoppingList, setShoppingList] = useState([]);
 
@@ -48,6 +38,27 @@ function App() {
             });
     };
 
+    const purchaseItem = () => {
+        axios.put(`/list/${id}`)
+        .then((response) => {
+            getList();
+          })
+          .catch((err) => {
+            alert("Error Getting List Items");
+            console.log(err);
+          });
+      };
+
+    const removeItem = (id) => {
+        axios.delete(`/list/${id}`)
+            .then((response) => {
+                getList();
+            })
+            .catch((err) => {
+                alert("Error Deleting List Items");
+                console.log(err);
+            });
+    };
 
     const clearList = () => {
         axios.delete('/list')
@@ -66,7 +77,8 @@ function App() {
             <Header />
             <main>
                 <AddForm addItem={addItem} />
-                <ShoppingList shoppingList={shoppingList} clearList={clearList}/>
+                <ShoppingList removeItem={removeItem} shoppingList={shoppingList} clearList={clearList}/>
+
             </main>
         </div>
     );

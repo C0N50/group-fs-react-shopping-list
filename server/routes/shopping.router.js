@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
     });
 });
 
-//PUT
+//PUT 
 router.put('/:id', (req, res) => {
   const sqlText = `UPDATE shopping_table name SET name=$1, quantity=$2, unit=$3 WHERE id=$4;`;
   const sqlParams = [
@@ -62,7 +62,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-//DELETE
+//DELETE for Clear
 router.delete('/', (req, res) => {
   console.log('Clearing shopping_table');
 
@@ -78,6 +78,27 @@ router.delete('/', (req, res) => {
     })
     .catch((error) => {
       console.log('ERROR could not delete', error);
+      res.sendStatus(500);
+    });
+});
+
+//Delete for Remove
+router.delete('/:id', (req, res) => {
+  console.log('Removing shopping_table');
+  const id = req.params.id;
+
+  let sqlQuery = `
+    DELETE FROM "shopping_table" WHERE id = $1;
+    `;
+
+  pool
+    .query(sqlQuery, [id])
+    .then(() => {
+      console.log('table deleted');
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error);
       res.sendStatus(500);
     });
 });
