@@ -1,4 +1,5 @@
 import React from "react";
+import Item from "../Item/Item";
 
 function ShoppingList({shoppingList}) {
   return (
@@ -9,7 +10,10 @@ function ShoppingList({shoppingList}) {
         <button>Clear</button>
       </div>
       <div className="list-grid">
+
+        {shoppingList.map(item => (
         <Item key={item.id} item={item} />
+        ))}
       </div>
     </>
   );
