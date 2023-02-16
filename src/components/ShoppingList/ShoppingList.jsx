@@ -9,7 +9,7 @@ function ShoppingList (shoppingList) {
             <button>Reset</button>
             <button>Clear</button>
         </div>
-        <div class = 'list-grid'>
+        <div className = 'list-grid'>
             
             
             {/* Add Item Component here */}

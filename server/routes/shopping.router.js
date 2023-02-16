@@ -30,7 +30,6 @@ router.delete('/', (req, res) =>{
         console.log('ERROR could not delete', error);
         res.sendStatus(500);
     })
-
 })
 
 
