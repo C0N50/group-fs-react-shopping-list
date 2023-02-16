@@ -23,11 +23,13 @@ router.get('/', (req, res) => {
 
 //POST
 router.post('/', (req, res) => {
+  console.log(req.data)
   const item = req.body;
-  const sqlText = `INSERT INTO shopping_table (name, quantity, unit)
-                    VALUES ($1, $2, $3);`;
-  pool
-    .query(sqlText, [item.name, item.quantity, item.unit])
+  const sqlText = `
+  INSERT INTO shopping_table (name, quantity, unit)
+  VALUES ($1, $2, $3);
+  `;
+  pool.query(sqlText, [item.name, item.quantity, item.unit])
     .then((result) => {
       console.log('Added item', item);
       res.sendStatus(201);
