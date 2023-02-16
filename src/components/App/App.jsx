@@ -37,8 +37,9 @@ function App() {
     }, []);
 
     const addItem = (itemToAdd) => {
+        console.log(itemToAdd)
 
-        axios.post('/list', { itemToAdd })
+        axios.post('/list',  itemToAdd)
             .then((response) => {
                 console.log('in POST item', response);
                 getList();
