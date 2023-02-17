@@ -1,0 +1,33 @@
+.title {
+    text-align:  center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.shoppingButtons {
+    padding: 8px;
+    margin-right: 32px;
+    margin-left: 32px;
+    border-radius: 8px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.shoppingList {
+    background-color: hsl(225, 100%, 83%);
+    margin-top: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-radius: 8px;
+}
+
+.reset{
+    background-color: orange;
+}
+
+.clear {
+    background-color: rgb(222, 96, 96);
+}

@@ -1,21 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+
 import Header from '../Header/Header.jsx';
 import AddForm from '../AddForm/AddForm.jsx';
 import ShoppingList from '../ShoppingList/ShoppingList.jsx';
+import Item from '../Item/Item.jsx';
 import './App.css';
 
 
 function App() {
-
     const [shoppingList, setShoppingList] = useState([]);
 
     const getList = () => {
-
         axios.get('/list')
             .then((response) => {
-                console.log('in GET list', response);
                 setShoppingList(response.data);
             }).catch((err) => {
                 console.error('GET error', err);
@@ -27,11 +26,10 @@ function App() {
     }, []);
 
     const addItem = (itemToAdd) => {
-        console.log(itemToAdd);
 
         axios.post('/list', itemToAdd)
             .then((response) => {
-                console.log('in POST item', response);
+
                 getList();
             }).catch((err) => {
                 console.error('in POST error', err);
@@ -50,7 +48,6 @@ function App() {
             });
     };
 
-
     const resetList = () => {
             axios.put(`/list`)
                 .then((response) => {
@@ -60,7 +57,7 @@ function App() {
                     alert("Error Reseting List Items");
                     console.log(err);
                 });
-        }
+    };
 
 
     const removeItem = (id) => {
@@ -77,7 +74,7 @@ function App() {
     const clearList = () => {
         axios.delete('/list')
             .then((response) => {
-                console.log('Cleared Table:', response);
+
                 getList();
             })
             .catch((err) => {
@@ -90,8 +87,14 @@ function App() {
         <div className="App">
             <Header />
             <main>
+
                 <AddForm addItem={addItem} />
-                <ShoppingList resetList={resetList} purchaseItem={purchaseItem} removeItem={removeItem} shoppingList={shoppingList} clearList={clearList} />
+
+                <ShoppingList resetList={resetList} clearList={clearList} />
+
+                {shoppingList.map(item => (
+                <Item purchaseItem={purchaseItem} removeItem={removeItem} key={item.id} item={item} />
+                ))}
 
             </main>
         </div>

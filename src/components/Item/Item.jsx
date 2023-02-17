@@ -1,8 +1,6 @@
-import { useState } from "react";
-import axios from "axios";
+import './Item.css'
 
-function Item({ item, removeItem, purchaseItem }) {
-  const [isPurchased, setIsPurchased] = useState(false);
+function Item({item, removeItem, purchaseItem }) {
 
   const handleBuyClick = () => {
     console.log(item);
@@ -19,13 +17,17 @@ function Item({ item, removeItem, purchaseItem }) {
       <div className='item-style'>
         <div className="item-style">
           <ul>
-            <li>{item.name}</li>
-            <li>{item.quantity}</li>
-            <li>{item.unit}</li>
+            <ul>{item.name}</ul>
+            <ul>{item.quantity} {item.unit}</ul>
           </ul>
         </div>
-        <button onClick={handleBuyClick} disabled={item.ispurchased}>Buy</button>
-        <button onClick={handleRemoveClick}>Remove</button>
+
+          <span className={item.ispurchased ? 'BOUGHT': 'HIDE'}>PURCHASED</span>
+
+        <div className= 'buttonList' >
+          <button className={item.ispurchased ? 'HIDE': 'buy'} onClick={handleBuyClick} disabled={item.ispurchased}>Buy</button>
+          <button className={item.ispurchased ? 'HIDE': 'remove'} onClick={handleRemoveClick}>Remove</button>
+        </div>
       </div>
     </>
   );

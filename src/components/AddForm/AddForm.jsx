@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './AddForm.css'
 
 function AddForm({addItem}) {
     const [newItemName, setNewItemName] = useState('');
@@ -14,7 +15,7 @@ function AddForm({addItem}) {
             unit: newItemUnit
         }
 
-        addItem(newItem, clearInputs);
+        addItem(newItem, clearInputs());
     }
 
     const clearInputs = () => {
@@ -26,9 +27,9 @@ function AddForm({addItem}) {
 
 
     return(
-        <>
-            <h2>Add an Item</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="add">
+            <h2 className="AddItem">Add an Item</h2>
+            <form className='form' onSubmit={handleSubmit}>
                 <label>Name:</label>
                 <input 
                     onChange={ (event) => setNewItemName(event.target.value) } 
@@ -47,9 +48,9 @@ function AddForm({addItem}) {
                     value={newItemUnit}
                 />
 
-                <button type="submit">Add New Item</button>
+                <button className="button" type="submit">Add New Item</button>
             </form>
-        </>
+        </div>
     )
 }
 

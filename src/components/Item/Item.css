@@ -1,0 +1,41 @@
+.buy{
+    background-color: rgb(128, 225, 128);
+    border-radius: 8px;
+    border: 1px solid black;
+    width:100px;
+    cursor:pointer
+}
+
+.remove{
+    background-color: rgb(222, 96, 96);
+    border-radius: 8px;
+    border: 1px solid black;
+    width:100px;
+    cursor:pointer
+}
+
+.buttonList {
+    display: flex;
+    justify-content: space-around;
+}
+
+ul{
+    text-align: center;
+    padding: 0;
+    padding-top: 10px;
+}
+
+.BOUGHT {
+    display:flex;
+    background-color: rgb(128, 225, 128);
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid black;
+    justify-content: space-around;
+}
+
+.HIDE {
+    visibility: hidden;
+    cursor: default
+}
+
